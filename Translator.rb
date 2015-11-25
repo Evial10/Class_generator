@@ -23,7 +23,7 @@ class Translator
     def get_list_language(lang = "ru")   
       doc = Net::HTTP.get_response(URI.parse("#{HOST}/getLangs?key=#{KEY}&ui=#{lang}"))
       json = JSON.parse doc.body             
-      fail YandexError, json['message'] unless json['code']            
+      fail YandexError, json['message'] if json['code']            
       return json['langs'], json['dirs']              
     end
     
